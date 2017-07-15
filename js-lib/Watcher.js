@@ -35,7 +35,6 @@ class Watcher
 
     getFilePaths()
     { let self = this;
-        return self._watcher.getWatched();
         return self._paths.slice(0);
     }
 
