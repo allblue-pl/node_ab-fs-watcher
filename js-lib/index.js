@@ -10,7 +10,7 @@ class ABWatcher {
     }
 
 
-    on(patterns, event_types, change_fn)
+    watch(patterns, event_types, change_fn)
     {
         let watcher = new Watcher();
 

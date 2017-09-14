@@ -67,7 +67,7 @@ class Watcher
         if (self._watcher !== null)
             self._watcher.close();
 
-        self._watcher = chokidar.watch(patterns)
+        self._watcher = chokidar.watch(patterns, { ignorePermissionErrors: true, })
             .on('add', function(watched_path) {
                 self._paths_Add(path.resolve(watched_path));
             })
