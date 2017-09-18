@@ -1,4 +1,4 @@
 'use strict';
 
 
-module.exports = require('./js-lib');
+module.exports = require('./lib');
