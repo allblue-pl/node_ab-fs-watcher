@@ -20,7 +20,9 @@
     "pattern",
     "patterns",
     "chokidar",
-    "anymatch"
+    "anymatch",
+    "watcher",
+    "watching"
   ],
   "author": "Jakub Zolcik (AllBlue)",
   "license": "MIT",
@@ -29,6 +31,7 @@
   },
   "homepage": "https://github.com/allblue-pl/node_ab-fs-watcher#readme",
   "dependencies": {
+    "anymatch": "1.3.*",
     "chokidar": "1.7.*"
   }
 }
