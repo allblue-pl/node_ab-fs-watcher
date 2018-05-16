@@ -1,6 +1,6 @@
 {
   "name": "ab-fs-watcher",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Wrapper for `chokidar` package.",
   "main": "index.js",
   "scripts": {

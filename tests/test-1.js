@@ -3,13 +3,14 @@
 const fs = require('fs');
 const path = require('path');
 
-const abFSWatcher = require('ab-fs-watcher');
+const abFSWatcher = require('../.');
 
 
 let patterns = [
     'tests/test-1/1.txt',
     'tests/test-1/2.txt',
     'tests/test-1/*.txt',
+    // 'tests/test-1'
 ];
 
 let w = abFSWatcher.watch(patterns, [ 'add', 'unlink' ], (fs_path, event_type) => {
