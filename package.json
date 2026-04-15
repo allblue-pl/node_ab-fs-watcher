@@ -1,6 +1,7 @@
 {
   "name": "ab-fs-watcher",
   "version": "0.0.4",
+  "type": "module",
   "description": "Wrapper for `chokidar` package.",
   "main": "index.js",
   "scripts": {
@@ -31,7 +32,10 @@
   },
   "homepage": "https://github.com/allblue-pl/node_ab-fs-watcher#readme",
   "dependencies": {
-    "anymatch": "1.3.*",
-    "chokidar": "1.7.*"
+    "anymatch": "3.1.*",
+    "chokidar": "5.0.*"
+  }, 
+  "devDependencies": {
+    "@types/node": "25.6.*"
   }
 }
