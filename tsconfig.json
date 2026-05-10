@@ -1,14 +1,22 @@
 {
     "compilerOptions": {
         "allowImportingTsExtensions": true,
+        "declaration": true,
+        "declarationMap": true,
         "erasableSyntaxOnly": true,
-        "noEmit": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
+        "module": "nodenext",
+        "outDir": "lib",
+        "rewriteRelativeImportExtensions": true,
+        "rootDir": "ts-lib",
         "strict": true,
         "target": "esnext",
-        "types": ["node"]
+        "types": ["node"],
+        "useDefineForClassFields": true,
+        "verbatimModuleSyntax": true
     },
-    "useDefineForClassFields": true,
-    "verbatimModuleSyntax": true
+    "exclude": [
+        "./index.d.ts",
+        "./lib/**/*",
+        "./tests/**/*"
+    ]
 }

@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import abFSWatcher from "../index.ts";
+import abFSWatcher from "../index.js";
 
 let patterns = [
     './tests/test-1/1.txt',

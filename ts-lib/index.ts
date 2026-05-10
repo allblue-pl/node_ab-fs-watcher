@@ -1,6 +1,7 @@
+import type { WatchEventFn, WatchEventType } from "./ts-types.ts";
 import Watcher from "./Watcher.ts";
 
-class abWatcher_Class {
+export class abFSWatcher_Class {
     get Watcher() {
         return Watcher;
     }
@@ -19,5 +20,5 @@ class abWatcher_Class {
         return watcher;
     }
 }
-const abWatcher = new abWatcher_Class();
-export default abWatcher;
+const abFSWatcher = new abFSWatcher_Class();
+export default abFSWatcher;
