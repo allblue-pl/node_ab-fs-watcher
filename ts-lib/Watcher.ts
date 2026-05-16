@@ -70,13 +70,15 @@ export default class Watcher {
     }
 
     update(patterns: Array<string>): void {
-        if (this.#watcher !== null)
-            this.#watcher.close();
+        this.finish();
 
         this.#patterns_Update(patterns);
 
-        this.#watcher = chokidar.watch(this.#patterns_GetWatchedPatterns(),
-            { ignorePermissionErrors: true, });
+        let watchedPatterns = this.#patterns_GetWatchedPatterns();
+        this.#watcher = chokidar.watch(watchedPatterns, { 
+            ignorePermissionErrors: true, 
+            ignored: (fsPath) => !this.#patterns_MatchesDir(this.#patterns, fsPath)
+        });
 
         if ('add' in this.#listeners) {
             this.#watcher
@@ -240,17 +242,28 @@ export default class Watcher {
         return fsPatterns;
     }
 
-    #patterns_GetWatchedPatterns() {
+    #patterns_GetWatchedPatterns(): Array<string> {
         let watchedPatterns: Array<string> = [];
-        for (let pattern of this.#patterns)
-            watchedPatterns.push(pattern.watchedPattern);
+        for (let pattern of this.#patterns) {
+            if (!watchedPatterns.includes(pattern.watchedPattern))
+                watchedPatterns.push(pattern.watchedPattern);
+        }
 
         return watchedPatterns;
     }
 
     #patterns_Matches(patterns: Array<Pattern>, fsPath: string) {
         for (let pattern of patterns) {
-            if (pattern.matches(fsPath))
+            if (pattern.matches(fsPath.replace(/\\/g, "/")))
+                return true;
+        }
+
+        return false;
+    }
+
+     #patterns_MatchesDir(patterns: Array<Pattern>, fsPath: string) {
+        for (let pattern of patterns) {
+            if (pattern.matchesDir(fsPath))
                 return true;
         }
 
@@ -258,7 +271,24 @@ export default class Watcher {
     }
 
     #patterns_Update(fsPatterns: Array<string>) {
-        this.#patterns = fsPatterns.map(item => new Pattern(item));
+        // let patterns: Array<Pattern> = [];
+
+        // for (let fsPattern_New of fsPatterns) {
+        //     let patternExists = false;
+        //     for (let pattern of patterns) {
+        //         if (pattern.hasWatchedPattern(fsPattern_New)) {
+        //             patternExists = true;
+        //             break;
+        //         }
+        //     }
+
+        //     if (!patternExists)
+        //         patterns.push(new Pattern(fsPattern_New));
+        // }
+
+        // this.#patterns = patterns;
+
+        this.#patterns = fsPatterns.map((item) => new Pattern(item));
     }
 
 }
