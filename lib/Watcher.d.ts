@@ -9,4 +9,3 @@ export default class Watcher {
     on(eventTypes: Array<WatchEventType>, fn: (fsPath: string, eventType: WatchEventType) => void): Watcher;
     update(patterns: Array<string>): void;
 }
-//# sourceMappingURL=Watcher.d.ts.map

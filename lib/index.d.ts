@@ -7,4 +7,3 @@ export declare class abFSWatcher_Class {
 }
 declare const abFSWatcher: abFSWatcher_Class;
 export default abFSWatcher;
-//# sourceMappingURL=index.d.ts.map

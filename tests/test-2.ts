@@ -3,13 +3,13 @@ import path from "node:path";
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 
-import abFSWatcher from "../index.js";
+import abFSWatcher from "../ts-lib/index.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 let patterns = [
-    path.resolve('./tests/b/c/*.js'),
+    path.resolve('./tests/webfonts/**/*'),
 ];
 
 let w = abFSWatcher.watch(patterns, [ 'add', 'unlink', 'change' ], (fsPath, eventType) => {
