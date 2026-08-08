@@ -1,4 +1,4 @@
-import type { WatchEventType } from "./ts-types.ts";
+import type { WatchIgnoreFn, WatchEventType } from "./ts-types.ts";
 export default class Watcher {
     #private;
     constructor();
@@ -7,5 +7,5 @@ export default class Watcher {
     getFSPaths(): Array<string>;
     getFSPatterns(): Array<string>;
     on(eventTypes: Array<WatchEventType>, fn: (fsPath: string, eventType: WatchEventType) => void): Watcher;
-    update(patterns: Array<string>): void;
+    update(patterns: Array<string>, ignoreFn?: WatchIgnoreFn | null): void;
 }

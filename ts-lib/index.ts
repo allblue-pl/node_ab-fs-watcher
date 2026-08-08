@@ -1,4 +1,4 @@
-import type { WatchEventFn, WatchEventType } from "./ts-types.ts";
+import type { WatchIgnoreFn, WatchEventFn, WatchEventType } from "./ts-types.ts";
 import Watcher from "./Watcher.ts";
 
 export class abFSWatcher_Class {
@@ -11,11 +11,11 @@ export class abFSWatcher_Class {
     }
 
     watch(patterns: Array<string>, eventTypes: Array<WatchEventType>, 
-            changeFn: WatchEventFn) {
+            changeFn: WatchEventFn, ignoreFn: WatchIgnoreFn|null = null) {
         let watcher = new Watcher();
 
         watcher.on(eventTypes, changeFn);
-        watcher.update(patterns);
+        watcher.update(patterns, ignoreFn);
 
         return watcher;
     }

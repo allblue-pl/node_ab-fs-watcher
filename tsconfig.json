@@ -10,10 +10,10 @@
         "strict": true,
         "target": "esnext",
         "typeRoots": [
-            "./node_modules/@types", 
-            "./js-modules"
+            "./node_modules/@types",
+            "./node_modules/ab-matcher/js-types"
         ],
-        "types": ["anymatch", "node"],
+        "types": [ "anymatch", "node" ],
         "useDefineForClassFields": true,
         "verbatimModuleSyntax": true
     },

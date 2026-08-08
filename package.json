@@ -32,11 +32,10 @@
   },
   "homepage": "https://github.com/allblue-pl/node_ab-fs-watcher#readme",
   "dependencies": {
-    "anymatch": "3.1.*",
+    "ab-matcher": "0.0.*",
     "chokidar": "5.0.*"
   },
   "devDependencies": {
-    "@types/node": "25.6.*",
-    "typescript": "^6.0.2"
+    "@types/node": "25.6.*"
   }
 }

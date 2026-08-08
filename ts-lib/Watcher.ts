@@ -5,7 +5,7 @@ import chokidar, { FSWatcher } from "chokidar";
 
 import Pattern from "./Pattern.ts";
 
-import type { WatchEventFn, WatchEventType } from "./ts-types.ts";
+import type { WatchIgnoreFn, WatchEventFn, WatchEventType } from "./ts-types.ts";
 
 export default class Watcher {
     #watcher: FSWatcher|null;
@@ -69,7 +69,7 @@ export default class Watcher {
         return this;
     }
 
-    update(patterns: Array<string>): void {
+    update(patterns: Array<string>, ignoreFn: WatchIgnoreFn|null = null): void {
         this.finish();
 
         this.#patterns_Update(patterns);
@@ -77,7 +77,14 @@ export default class Watcher {
         let watchedPatterns = this.#patterns_GetWatchedPatterns();
         this.#watcher = chokidar.watch(watchedPatterns, { 
             ignorePermissionErrors: true, 
-            ignored: (fsPath) => !this.#patterns_MatchesDir(this.#patterns, fsPath)
+            ignored: (fsPath) => {
+                if (ignoreFn !== null) {
+                    if (ignoreFn(fsPath.replaceAll("/", path.sep)))
+                        return true;
+                }
+
+                return !this.#patterns_MatchesDir(this.#patterns, fsPath);
+            }
         });
 
         if ('add' in this.#listeners) {
@@ -254,7 +261,7 @@ export default class Watcher {
 
     #patterns_Matches(patterns: Array<Pattern>, fsPath: string) {
         for (let pattern of patterns) {
-            if (pattern.matches(fsPath.replace(/\\/g, "/")))
+            if (pattern.matches(fsPath))
                 return true;
         }
 
